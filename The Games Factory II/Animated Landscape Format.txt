@@ -1,0 +1,33 @@
+Animated Landscape.scr can only be configured
+by copying to the clipboard in this format:
+
+%map% %hud%
+
+Map
+This stores the map frame which can be any of the following:
+01 Landscape 1 (Close hills)
+02 Landscape 2 (Far hills)
+03 Tunnel 1 (Space Tunnel)
+04 Tunnel 2 (Concrete Tunnel)
+05 Tunnel 3 (Mining Tunnel)
+06 Tunnel 4 (Black and White Waves)
+07 Tunnel 5 (Blue Light)
+08 Tunnel 6 (Light Speed)
+09 Tunnel 7 (Hexagonal Tunnel)
+10 Tunnel 8 (Liquid Rainbow)
+11 Tunnel 9 (Rainbow Tunnel)
+12 Tunnel 10 (Heart Tunnel)
+
+HUD
+This stores which hud to use
+0 Spaceship HUD
+1 No HUD
+2 Plane HUD (No Gun)
+3 Plane HUD
+
+Example:
+5 1
+(Takes you to Tunnel 3 using no HUD)
+
+Known bugs
+ - Landscape 1 can only use spaceship HUD

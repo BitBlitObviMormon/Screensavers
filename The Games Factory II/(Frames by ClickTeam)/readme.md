@@ -1,0 +1,2 @@
+# Screen savers: Clickteam screen savers
+These programs were made almost entirely by the authors of The Games Factory 2, Clickteam; I only made necessary changes to make them run like proper screen savers.

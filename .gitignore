@@ -1,0 +1,5 @@
+# Blitz backup files #
+*.bb_bak*
+
+# This screen saver is too big for git apparently. #
+Animated Landscape.scr

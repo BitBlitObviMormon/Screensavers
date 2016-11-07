@@ -6,6 +6,9 @@
 
 ;adjust for more or less stars (500 looks nice)
 ;I can get 2500 stars without losing a single frame
+
+Const sqrt2# = 1.4142135623730950488016887242097
+
 If Trim$(CommandLine$()) = "/c" Or Trim$(CommandLine$()) = "" Then
 	.prompt
 	stars = Input("Number of stars? (100-1000) ")
@@ -41,14 +44,14 @@ End Type
 
 setupstars(w, h)
 
-ovalw = h/4
-ovalx = w/2 - ovalw/2
-ovaly = h/2 - ovalw/2
-forgiveness = w/16
-delxp = w/2 + forgiveness
-delxn = w/2 - forgiveness
-delyp = h/2 + forgiveness
-delyn = h/2 - forgiveness
+Global forgiveness = w/16
+Global delxp = w/2 + forgiveness
+Global delxn = w/2 - forgiveness
+Global delyp = h/2 + forgiveness
+Global delyn = h/2 - forgiveness
+Global ovalw = forgiveness * 2.0 * sqrt2#
+Global ovalx = w/2 - ovalw/2
+Global ovaly = h/2 - ovalw/2
 
 mouse_x = MouseX()
 mouse_y = MouseY()
@@ -58,7 +61,7 @@ While Not KeyDown(1)
  e = WaitEvent(1)
  If e = $101 Or e = $201 Or e = $204 Or mouse_x <> MouseX() Or mouse_y <> MouseY() Then End
  Cls
- update(w, h, x, y, ovalx, ovaly, ovalw, delxp, delxn, delyp, delyn)
+ update()
  FlipCanvas canvas
 Wend
 End
@@ -74,7 +77,7 @@ Function setupstars(w, h)
 End Function
 
 ;update each star in turn
-Function update(w, h, x, y, ovalx, ovaly, ovalw, delxp, delxn, delyp, delyn)
+Function update()
  For stars.star = Each star
   xx=w/2+Sin((2*stars\angle)*Pi/360)*stars\rad
   yy=h/2+Cos((2*stars\angle)*Pi/360)*stars\rad

@@ -147,8 +147,8 @@ Function threed()
 		tx# = ((tx# * Cos(vz#)) - (ty# * Sin(vz#)))
 		ty# = ((ox# * Sin(vz#)) + (ty# * Cos(vz#)))
 		nx  = Int(0.8 * width * (tx#) / (distance - (tz#))) + (.5 * width)
-		ny  = Int((.375 * width) - (0.8 * width * ty#) / (distance - (tz#)))
-      
+		ny  = Int(height / 2 - (0.8 * width * ty#) / (distance - (tz#)))
+
 		setcolor(tz#)
 		Oval nx,ny,r,r
 ;		Plot nx,ny
@@ -156,7 +156,7 @@ Function threed()
 End Function
 
 ; This function looks at the z-value of the pixel
-; and sets the color accoordingly.
+; and sets the color accordingly.
 Function setcolor(t#)
 	If t# <= 200 And t# >= 75
 		Color 255,255,255

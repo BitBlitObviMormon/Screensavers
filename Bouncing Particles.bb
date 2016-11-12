@@ -114,7 +114,6 @@ End Function
 
 Function Update()
 	For p.Particle=Each Particle
-		If p\y < max Then max = p\y
 		p\x=p\x+p\xs
 		If p\x<0 Or p\x>width-p\w
 			p\xs=-p\xs

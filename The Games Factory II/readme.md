@@ -1,2 +1,2 @@
-# Screen savers: The Games Factory 2
+# Screen Savers - The Games Factory 2
 These are several random screen savers that I made with The Games Factory 2 in high school. I do not have the source files or The Games Factory 2 anymore so I cannot make any changes to them. Yes, I know that some of the programs have bugs in them; I can't change that without more hassle than its worth.

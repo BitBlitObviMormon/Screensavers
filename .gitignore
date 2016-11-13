@@ -3,3 +3,6 @@
 
 # This screen saver is too big for git apparently. #
 Animated Landscape.scr
+
+# Widows thumbnail database
+*.db

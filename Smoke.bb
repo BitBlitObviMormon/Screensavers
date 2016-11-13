@@ -36,18 +36,19 @@ Type Particle
 	Field size#
 End Type
 
+Global gh = GadgetHeight(Desktop())
+Global gw = GadgetWidth(Desktop())
+
 ; Gravity...
-Const grav# = 0.05
+Const grav# = 0.25
 
 ; Create a centered game window (see CenterWindow function at bottom)...
-window = CreateWindow("Screen Saver",0,0,GadgetWidth(Desktop()), GadgetHeight(Desktop()),0,0)
-canvas = CreateCanvas(0,0,GadgetWidth(Desktop()), GadgetHeight(Desktop()), window)
+window = CreateWindow("Screen Saver",0,0,gw, gh,0,0)
+canvas = CreateCanvas(0,0,gw, gh, window)
 
 ; Draw to the canvas from here on...
 
 SetBuffer CanvasBuffer(canvas)
-
-gh = GadgetHeight(Desktop())
 
 ; Create a timer to update every 1/60th of a second...
 
@@ -58,8 +59,8 @@ mouse_x = MouseX()
 mouse_y = MouseY()
 vx = 0
 vy = 0
-x = GadgetWidth(Desktop())/2
-y = GadgetHeight(Desktop()) - 10
+x = gw/2
+y = gh - 10
 
 HidePointer(canvas)
 
@@ -91,14 +92,14 @@ Repeat
 	vy = vy + Rand(-1, 1)
 	x = x + vx
 	y = y + vy
-	If x > GadgetWidth(Desktop()) Then vx = vx - 1
+	If x > gw Then vx = vx - 1
 	If x < 0 Then vx = vx + 1
-	If y > GadgetHeight(Desktop()) - Int(GadgetHeight(Desktop()) / 50) Then vy = vy - 1
-	If y < GadgetHeight(Desktop()) - Int(GadgetHeight(Desktop()) / 2) Then vy = vy + 1
-	If vx > Int(GadgetWidth(Desktop()) / 200) Then vx = vx - 1
-	If vx < -Int(GadgetWidth(Desktop()) / 200) Then vx = vx + 1
-	If vy > Int(GadgetWidth(Desktop()) / 200) Then vy = vy - 1
-	If vy < -Int(GadgetWidth(Desktop()) / 200) Then vy = vy + 1
+	If y > gh - Int(gh / 50) Then vy = vy - 1
+	If y < gh - Int(gh / 2) Then vy = vy + 1
+	If vx > Int(gw / 200) Then vx = vx - 1
+	If vx < -Int(gw / 200) Then vx = vx + 1
+	If vy > Int(gw / 200) Then vy = vy - 1
+	If vy < -Int(gw / 200) Then vy = vy + 1
 	mx = x + Rand (-8, 8)
 	my = y + Rand (-8, 8)
 	CreateParticle (mx, my)

@@ -6,3 +6,6 @@ Animated Landscape.scr
 
 # Widows thumbnail database
 *.db
+
+# The high score file created by Discus.bb
+sdhighscore

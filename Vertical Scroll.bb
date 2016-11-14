@@ -2,7 +2,7 @@
 ; Verified 1.48 4/18/2001
 ;hit ESC to exit
 
-If Trim$(CommandLine$()) <> "/S" Then End
+If Trim$(Lower$(CommandLine$())) <> "/s" Then End
 
 ;go into graphics mode
 window = CreateWindow("Screen Saver",0,0,GadgetWidth(Desktop()),GadgetHeight(Desktop()),0,0)

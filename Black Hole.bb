@@ -19,10 +19,11 @@ If Trim$(CommandLine$()) = "/c" Or Trim$(CommandLine$()) = "" Then
 	dir$ = GetEnv$("APPDATA") + "\Jason's Screensavers\"
 	file = WriteFile(dir$ + "Black Hole.txt")
 	WriteShort(file,stars)
+	CloseFile(file)
 	End
 End If
 
-If Trim$(CommandLine$()) <> "/S" Then End
+If Trim$(Lower$(CommandLine$())) <> "/s" Then End
 
 Global staramount = ReadTheStars()
 
@@ -44,7 +45,7 @@ End Type
 
 setupstars(w, h)
 
-Global forgiveness = w/16
+Global forgiveness = w/64
 Global delxp = w/2 + forgiveness
 Global delxn = w/2 - forgiveness
 Global delyp = h/2 + forgiveness
@@ -112,6 +113,7 @@ Function ReadTheStars()
 		CloseFile(file)
 	End If
 	file = ReadFile(dir$ + "Black Hole.txt")
-	Return ReadShort(file)
+	retval = ReadShort(file)
 	CloseFile(file)
+	Return retval
 End Function

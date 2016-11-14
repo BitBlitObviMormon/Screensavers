@@ -13,6 +13,7 @@ If Trim$(CommandLine$()) = "/c" Or Trim$(CommandLine$()) = "" Then
 	dir$ = GetEnv$("APPDATA") + "\Jason's Screensavers\"
 	file = WriteFile(dir$ + "Weave.txt")
 	WriteShort(file,lines)
+	CloseFile(file)
 	End
 End If
 
@@ -109,6 +110,7 @@ Function BetweenTheLines()
 		CloseFile(file)
 	End If
 	file = ReadFile(dir$ + "Weave.txt")
-	Return ReadShort(file)
+	retval = ReadShort(file)
 	CloseFile(file)
+	Return retval
 End Function

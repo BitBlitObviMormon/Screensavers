@@ -1,5 +1,3 @@
-EndGraphics
-
 ; -----------------------------------------------------------------------------
 ; Example of a windowed-mode game loop...
 ; -----------------------------------------------------------------------------
@@ -41,6 +39,8 @@ Global gw = GadgetWidth(Desktop())
 
 ; Gravity...
 Const grav# = 0.25
+
+If Trim$(Lower$(CommandLine$())) <> "/s" Then End
 
 ; Create a centered game window (see CenterWindow function at bottom)...
 window = CreateWindow("Screen Saver",0,0,gw, gh,0,0)
@@ -135,7 +135,7 @@ Function UpdateParticles (maxy)
 		p\g = p\g - (p\dec / 2): If p\g < 0 Then p\g = 0
 		p\b = p\b - p\dec: If p\b < 0 Then p\b = 0
 		Color p\r, p\g, p\b
-		If (p\r < 0) Or (p\y > maxy)
+		If (p\r < 0) Or (p\y > maxy + 20)
 			Delete p
 		Else
 			Oval p\x, p\y, p\size, p\size

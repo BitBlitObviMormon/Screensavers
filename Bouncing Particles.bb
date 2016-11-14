@@ -1,5 +1,3 @@
-AppTitle "Bouncing Particles"
-
 Global timer = CreateTimer(120)
 
 Dim heights(30)
@@ -44,6 +42,7 @@ If Trim$(CommandLine$()) = "/c" Or Trim$(CommandLine$()) = "" Then
 	dir$ = GetEnv$("APPDATA") + "\Jason's Screensavers\"
 	file = WriteFile(dir$ + "Bouncing Particles.txt")
 	WriteShort(file,particles)
+	CloseFile(file)
 	End
 End If
 
@@ -74,7 +73,7 @@ Type Particle
 	Field w,h,r,g,b
 End Type
 
-If Trim$(CommandLine$()) <> "/S" Then End
+If Trim$(Lower$(CommandLine$())) <> "/s" Then End
 
 window = CreateWindow("Screen Saver",0,0,width,height,0,0)
 canvas = CreateCanvas(0,0,width,height,window)
@@ -149,6 +148,7 @@ Function GetMaxParticles()
 		CloseFile(file)
 	End If
 	file = ReadFile(dir$ + "Bouncing Particles.txt")
-	Return ReadShort(file)
+	retval = ReadShort(file)
 	CloseFile(file)
+	Return retval
 End Function

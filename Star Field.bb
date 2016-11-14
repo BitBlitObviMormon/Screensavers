@@ -18,6 +18,7 @@ If Trim$(CommandLine$()) = "/c" Or Trim$(CommandLine$()) = "" Then
 	dir$ = GetEnv$("APPDATA") + "\Jason's Screensavers\"
 	file = WriteFile(dir$ + "Star Field.txt")
 	WriteShort(file,stars)
+	CloseFile(file)
 	End
 End If
 
@@ -47,11 +48,12 @@ mouse_x = MouseX()
 mouse_y = MouseY()
 
 Const forgiveness = 19
+Global sradius = w/24
 Global delxp = w + forgiveness
 Global delyp = h + forgiveness
 Global delxn = -forgiveness
 Global delyn = -forgiveness
-Global ovalw = w/16 * 2.0 * sqrt2#
+Global ovalw = sradius * 2.0 * sqrt2#
 Global ovalx = w/2 - ovalw/2
 Global ovaly = h/2 - ovalw/2
 
@@ -82,7 +84,7 @@ Function update()
   yy=h/2+Cos((2*stars\angle)*Pi/360)*stars\rad
   ;replace star if it goes off screen
   If xx<delxn Or xx>delxp Or yy<delyn Or yy>delyp
-   stars\rad=Rnd(w/16)+w/16
+   stars\rad=Rnd(sradius)+sradius
    stars\angle=Rnd(65535)
    stars\speed=Rnd(5)+1
   EndIf
@@ -110,6 +112,7 @@ Function ReadTheStars()
 		CloseFile(file)
 	End If
 	file = ReadFile(dir$ + "Star Field.txt")
-	Return ReadShort(file)
+	retval = ReadShort(file)
 	CloseFile(file)
+	Return retval
 End Function

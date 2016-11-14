@@ -1,10 +1,20 @@
-AppTitle "FirePaint!"
-; verified 1.48 4/18/2001
+If Trim$(CommandLine$()) = "/c" Or Trim$(CommandLine$()) = "" Then
+	.prompt
+	stars = Input("Intensity? (1-20) ")
+	If stars < 1 Then stars = 1
+	If stars > 1000 Then If Proceed("Are you sure? More than 20 can lag!",True) < 1 Then Goto prompt
+	If FileType(GetEnv$("APPDATA") + "\Jason's Screensavers") = 0 Then CreateDir(GetEnv$("APPDATA") + "\Jason's Screensavers")
+	dir$ = GetEnv$("APPDATA") + "\Jason's Screensavers\"
+	file = WriteFile(dir$ + "Fire Bird.txt")
+	WriteShort(file,stars)
+	CloseFile(file)
+	End
+End If
+
+If Trim$(Lower$(CommandLine$())) <> "/s" Then End
 
 Global FPS = 60
-Global intensity = 3 ;play with this number!
-;My P3-666 can handle '40' without dropping a frame (debug off)
-;This looks AWESOME!
+Global intensity = ReadTheStars()
 
 Global width=GadgetWidth(Desktop()), height=GadgetHeight(Desktop()), gravity#=.1
 
@@ -97,4 +107,18 @@ Function RenderFrags()
 		Color f\r,f\g,f\b
 		Rect f\x-1,f\y-1,3,3
 	Next
+End Function
+
+Function ReadTheStars()
+	If FileType(GetEnv$("APPDATA") + "\Jason's Screensavers") = 0 Then CreateDir(GetEnv$("APPDATA") + "\Jason's Screensavers")
+	dir$ = GetEnv$("APPDATA") + "\Jason's Screensavers\"
+	If FileType(dir$ + "Fire Bird.txt") = 0 Then
+		file = WriteFile(dir$ + "Fire Bird.txt")
+		WriteShort(file,1)
+		CloseFile(file)
+	End If
+	file = ReadFile(dir$ + "Fire Bird.txt")
+	retval = ReadShort(file)
+	CloseFile(file)
+	Return retval
 End Function

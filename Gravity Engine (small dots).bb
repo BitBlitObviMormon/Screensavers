@@ -19,7 +19,7 @@ If Trim$(CommandLine$()) = "/c" Or Trim$(CommandLine$()) = "" Then
 	If blobs > 500 Then If Proceed("Are you sure? More than 500 will likely crash your system!",True) < 1 Then Goto prompt
 	If FileType(GetEnv$("APPDATA") + "\Jason's Screensavers") = 0 Then CreateDir(GetEnv$("APPDATA") + "\Jason's Screensavers")
 	dir$ = GetEnv$("APPDATA") + "\Jason's Screensavers\"
-	file = WriteFile(dir$ + "Gravity.txt")
+	file = WriteFile(dir$ + "Gravity (small).txt")
 	WriteShort(file,blobs)
 	CloseFile(file)
 	End
@@ -98,20 +98,20 @@ Function RenderBlobs()
 		b\x=b\x+b\xs
 		b\y=b\y+b\ys
 		Color b\r,b\g,b\b
-		;Plot b\x, b\y
-		Rect b\x*scale-1,b\y*scale-1,3,3
+		Plot b\x, b\y
+		;Rect b\x*scale-1,b\y*scale-1,3,3
 	Next
 End Function
 
 Function ReadTheStars()
 	If FileType(GetEnv$("APPDATA") + "\Jason's Screensavers") = 0 Then CreateDir(GetEnv$("APPDATA") + "\Jason's Screensavers")
 	dir$ = GetEnv$("APPDATA") + "\Jason's Screensavers\"
-	If FileType(dir$ + "Gravity.txt") = 0 Then
-		file = WriteFile(dir$ + "Gravity.txt")
+	If FileType(dir$ + "Gravity (small).txt") = 0 Then
+		file = WriteFile(dir$ + "Gravity (small).txt")
 		WriteShort(file,50)
 		CloseFile(file)
 	End If
-	file = ReadFile(dir$ + "Gravity.txt")
+	file = ReadFile(dir$ + "Gravity (small).txt")
 	retval = ReadShort(file)
 	CloseFile(file)
 	Return retval

@@ -10,10 +10,11 @@ If Trim$(CommandLine$()) = "/c" Or Trim$(CommandLine$()) = "" Then
 	dir$ = GetEnv$("APPDATA") + "\Jason's Screensavers\"
 	file = WriteFile(dir$ + "Seismic Stars.txt")
 	WriteShort(file,sped)
+	CloseFile(file)
 	End
 End If
 
-If Trim$(CommandLine$()) <> "/S" Then End
+If Trim$(Lower$(CommandLine$())) <> "/s" Then End
 
 ;Change this to make it shift faster
 Global speed# = Float#(ReadTheStars())/100
@@ -92,6 +93,7 @@ Function ReadTheStars()
 		CloseFile(file)
 	End If
 	file = ReadFile(dir$ + "Seismic Stars.txt")
-	Return ReadShort(file)
+	retval = ReadShort(file)
 	CloseFile(file)
+	Return retval
 End Function

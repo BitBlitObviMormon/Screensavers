@@ -60,7 +60,7 @@ Global ovaly = h/2 - ovalw/2
 
 ;main loop
 While Not KeyDown(1)
- e = WaitEvent(1)
+ e = WaitEvent()
  If e = $101 Or e = $201 Or e = $204 Or mouse_x <> MouseX() Or mouse_y <> MouseY() Then End
  If e = $4001 Then
   Cls

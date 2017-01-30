@@ -45,7 +45,7 @@ mouse_y = MouseY()
 SeedRnd(MilliSecs())
 ;loop until ESC hit
 While Not KeyDown(1)
-	e = WaitEvent(1)
+	e = WaitEvent()
 	If e = $101 Or e = $201 Or e = $204 Or mouse_x <> MouseX() Or mouse_y <> MouseY() Then End
 	If e = $4001 Then
 		;draw the backdrop

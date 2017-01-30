@@ -49,7 +49,7 @@ FlushMouse()
 FlushEvents()
 
 While Not KeyDown(1)
-	e = WaitEvent(1)
+	e = WaitEvent()
 	If e = $101 Or e = $201 Or e = $204 Or e = $203 Then End
 	If e = $4001 Then
 		Cls

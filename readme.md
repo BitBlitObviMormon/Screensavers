@@ -1,2 +1,2 @@
 # Screen Savers
-These are several random screen savers and extra code that I made with Blitz Plus in high school. I may have borrowed code from the BlitzPlus dev team, but don't quite remember when and where. I have no intention of modifying this code in the future, but may do so anyway.
+Here are several random screen savers and extra code that I made with *Blitz Plus* in high school. I may have borrowed code from the *Blitz Plus* team, but don't quite remember when and where. I have no intention of modifying this code in the future, but may do so anyway.

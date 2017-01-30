@@ -33,6 +33,7 @@ canvas = CreateCanvas(0,0,w,h,window)
 SetBuffer CanvasBuffer(canvas)
 HidePointer canvas
 
+CreateTimer(60)
 Global stara=LoadImage("graphics\star1.bmp")
 Global starb=LoadImage("graphics\star2.bmp")
 Global starc=LoadImage("graphics\star3.bmp")
@@ -61,9 +62,11 @@ Global ovaly = h/2 - ovalw/2
 While Not KeyDown(1)
  e = WaitEvent(1)
  If e = $101 Or e = $201 Or e = $204 Or mouse_x <> MouseX() Or mouse_y <> MouseY() Then End
- Cls
- update()
- FlipCanvas canvas
+ If e = $4001 Then
+  Cls
+  update()
+  FlipCanvas canvas
+ End If
 Wend
 End
 

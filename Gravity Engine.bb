@@ -31,6 +31,7 @@ window = CreateWindow("Screen Saver",0,0,width,height,0,0)
 canvas = CreateCanvas(0,0,width,height,window)
 SetBuffer CanvasBuffer(canvas)
 HidePointer canvas
+CreateTimer(240)
 
 SeedRnd(MilliSecs())
 
@@ -50,12 +51,14 @@ FlushEvents()
 While Not KeyDown(1)
 	e = WaitEvent(1)
 	If e = $101 Or e = $201 Or e = $204 Or e = $203 Then End
-	Cls
-	Origin GraphicsWidth() / 2, GraphicsHeight() / 2
-	time=MilliSecs()
-	UpdateBlobs()
-	RenderBlobs()
-	FlipCanvas canvas
+	If e = $4001
+		Cls
+		Origin GraphicsWidth() / 2, GraphicsHeight() / 2
+		time=MilliSecs()
+		UpdateBlobs()
+		RenderBlobs()
+		FlipCanvas canvas
+	End If
 Wend
 
 End

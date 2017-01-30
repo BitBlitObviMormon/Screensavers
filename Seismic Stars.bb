@@ -22,6 +22,7 @@ Global speed# = Float#(ReadTheStars())/100
 ;go into graphics mode
 window = CreateWindow("Screen Saver",0,0,GadgetWidth(Desktop()),GadgetHeight(Desktop()),0,0)
 canvas = CreateCanvas(0,0,GadgetWidth(Desktop()),GadgetHeight(Desktop()),window)
+CreateTimer(60)
 
 ;enable double buffering
 SetBuffer CanvasBuffer(canvas)
@@ -46,29 +47,32 @@ SeedRnd(MilliSecs())
 While Not KeyDown(1)
 	e = WaitEvent(1)
 	If e = $101 Or e = $201 Or e = $204 Or mouse_x <> MouseX() Or mouse_y <> MouseY() Then End
-	;draw the backdrop
-	TileBlock backdrop1,0+Int(x#),Int(y#)
-	
-	;draw it again, but across a bit and moving 'faster'
-	TileImage backdrop2,0+Int(x#*2),Int(y#*2)
-	
-	;and again!
-	TileImage backdrop3,0+Int(x#*3),Int(y#*3)
-	
-	;and yet again!
-	TileImage backdrop4,0+Int(x#*4),Int(y#*4)
-		
-	;scroll the backdrop
-	vx#=vx#+Rnd#(-speed#/Abs(bound#(vx#,123456, -.5)*2),speed#/(bound#(vx#, .5)*2))
-	vy#=vy#+Rnd#(-speed#/Abs(bound#(vy#,123456, -.5)*2),speed#/(bound#(vy#, .5)*2))
-	x#=x#+vx#
-	y#=y#+vy#
-	If y#>=ImageHeight(backdrop1) Then y#=y#-ImageHeight(backdrop1)
-	If x#>=ImageWidth(backdrop1) Then x#=x#-ImageWidth(backdrop1)
-	If y#<=-ImageHeight(backdrop1) Then y#=y#+ImageHeight(backdrop1)
-	If x#<=-ImageWidth(backdrop1) Then x#=x#+ImageWidth(backdrop1)
-	;flip the front and back buffers
-	FlipCanvas canvas
+	If e = $4001 Then
+		;draw the backdrop
+		TileBlock backdrop1,0+Int(x#),Int(y#)
+
+		;draw it again, but across a bit and moving 'faster'
+		TileImage backdrop2,0+Int(x#*2),Int(y#*2)
+
+		;and again!
+		TileImage backdrop3,0+Int(x#*3),Int(y#*3)
+
+		;and yet again!
+		TileImage backdrop4,0+Int(x#*4),Int(y#*4)
+
+		;scroll the backdrop
+		vx#=vx#+Rnd#(-speed#/Abs(bound#(vx#,123456, -.5)*2),speed#/(bound#(vx#, .5)*2))
+		vy#=vy#+Rnd#(-speed#/Abs(bound#(vy#,123456, -.5)*2),speed#/(bound#(vy#, .5)*2))
+		x#=x#+vx#
+		y#=y#+vy#
+		If y#>=ImageHeight(backdrop1) Then y#=y#-ImageHeight(backdrop1)
+		If x#>=ImageWidth(backdrop1) Then x#=x#-ImageWidth(backdrop1)
+		If y#<=-ImageHeight(backdrop1) Then y#=y#+ImageHeight(backdrop1)
+		If x#<=-ImageWidth(backdrop1) Then x#=x#+ImageWidth(backdrop1)
+
+		;flip the front and back buffers
+		FlipCanvas canvas
+	End If
 Wend
 
 ;This function sets boundaries.

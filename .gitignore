@@ -7,5 +7,11 @@ Animated Landscape.scr
 # Widows thumbnail database
 *.db
 
+# Backup files #
+*~
+
+# Vim swap files #
+*.swp
+
 # The high score file created by Discus.bb
 sdhighscore

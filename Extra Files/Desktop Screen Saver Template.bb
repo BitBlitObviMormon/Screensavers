@@ -52,8 +52,7 @@ Function GrabDesktop()
 End Function
 
 Function LoadDesktop()
-	image = LoadImage(SystemProperty$("tempdir") + "Temp.bmp") ;Return the desktop
-	Return image
+	Return LoadImage(SystemProperty$("tempdir") + "Temp.bmp") ;Return the desktop
 End Function
 
 Function FreeDesktop()
